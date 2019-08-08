@@ -1,0 +1,57 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <h1>Acme Product Offerings</h1>
+
+      <!-- we will render HTML inside #products -->
+      <div id='products'></div>
+
+    <script>
+
+      // global variables
+      const API = 'https://acme-users-api-rev.herokuapp.com/api'; // to use as a base for any API calls
+
+      let id = ''; // id of product - how will our app change this?
+
+      const loadData = async() => {
+
+      const data = await Promise.all([
+
+        fetch(`${API}/products`),
+
+        fetch(`${API}/companies`),
+
+        fetch(`${API}/offerings`)
+
+      ]);
+
+
+
+    const [product, company, offering] = await Promise.all(data.map(response => response.json()));
+
+    console.log(product);
+    console.log(company);
+    console.log(offering);
+
+  }
+
+  loadData();
+
+
+      // list of products - where will this data come from?
+
+      // define event listeners (i.e. 'hashchange')
+
+      // other functions?
+
+      // do we need to execute any functions when the page loads (not just inside other functions)?
+      // i.e. render();
+      // something else?
+
+    </script>
+    </body>
+  </html>
