@@ -14,6 +14,10 @@
 
       // global variables
       const API = 'https://acme-users-api-rev.herokuapp.com/api'; // to use as a base for any API calls
+      //let product = [];
+      //let company = [];
+      //let offering = [];
+      const globalData = {product: [], company: [], offering: []};
 
       let id = ''; // id of product - how will our app change this?
 
@@ -33,6 +37,10 @@
 
     const [product, company, offering] = await Promise.all(data.map(response => response.json()));
 
+globalData.product = product;
+globalData.company = company;
+globalData.offering = offering;
+render();
     console.log(product);
     console.log(company);
     console.log(offering);
@@ -40,6 +48,15 @@
   }
 
   loadData();
+
+//  const combinedData = company[product[0]];
+
+  //console.log(combinedData);
+
+  console.log("product =", globalData.product);
+    console.log("company =", globalData.company);
+    console.log("offering=", globalData.offering);
+
 
 
       // list of products - where will this data come from?
@@ -50,6 +67,12 @@
 
       // do we need to execute any functions when the page loads (not just inside other functions)?
       // i.e. render();
+
+      function render() {
+        const html = globalData.product.map((item) => {
+          return item;
+        }).join('');
+      };
       // something else?
 
     </script>
